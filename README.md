@@ -1,4 +1,4 @@
-# metrika_benchs_simple
+# metrika simple benchmarks
 
 An example of how to use metrika library to measure simple things.
 

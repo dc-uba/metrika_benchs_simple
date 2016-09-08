@@ -1,12 +1,12 @@
 import re
-from bench_variations import python_suite
+from bench_suites import python_suite
 
 # Experiment reading measures from a generated file instead of using internal python timer
 
 
 def configure(engine):
     suite = python_suite()
-    setup = engine.organize_experiment('join-perf-time', suite)
+    setup = engine.organize_experiment(suite, 'join-perf-time')
     setup.invoke_with_command(lambda program, size, version:
                               '/usr/bin/time -v python%d -c "%s" >output' % (version, program % size))
     setup.measure_parsing_file('secs', parse_cpu, "output")
@@ -16,12 +16,13 @@ def configure(engine):
 
 def plot(plotter, name, i):
     plotter.group_by('size')
-    plotter.plot_bars('times-time')
+    plotter.plot_boxes('times-time-boxes')
+    plotter.plot_bars('times-time-bars')
 
 def report_values(reporter):
     reporter.add_column('contender', lambda contender, _: contender['program'].name, 10)
     reporter.add_column('python', lambda contender, _: contender['pyver'].value())
-    reporter.add_column('input', lambda contender, _: str(contender['size']), 10)
+    reporter.add_column('input', lambda contender, _: str(contender['size']), 12)
     reporter.add_common_columns()
     reporter.sort_by(lambda row: (row[2], row[3]))
 

@@ -6,7 +6,7 @@ programs = {
     'list': "'-'.join([str(n) for n in range(%d)])"
 }
 
-sizes = {'test': 10, 'small': 10000, 'big': 100000}
+sizes = {'test': 10, 'small': 10000, 'big': 1000000}
 
 versions = [2, 3]
 

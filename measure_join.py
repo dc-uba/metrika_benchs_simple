@@ -1,11 +1,11 @@
 # Example of benchmarking join: iterator of strings vs lists of strings
 
-from bench_variations import simple_suite
+from bench_suites import simple_suite
 
 
 def configure(engine):
     suite = simple_suite()
-    setup = engine.organize_experiment('join-perf', suite)
+    setup = engine.organize_experiment(suite, 'join-perf')
     setup.invoke_with_command(lambda program, size: 'python -c "%s"' % (program % size))
     setup.measure_execution_time()
     setup.set_report(report_run_time, 'run-time', 'performance of join when using distinct types of objects')
