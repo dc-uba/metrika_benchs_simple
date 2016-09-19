@@ -14,7 +14,7 @@ def configure(engine):
 
 def report_run_time(reporter):
     reporter.add_column('contender', lambda contender, _: contender['program'].name)
-    reporter.add_column('input', lambda contender, _: str(contender['size']), 10)
+    reporter.add_column('input', lambda contender, _: str(contender['size']), 14)
     reporter.add_common_columns()
     reporter.sort_by(lambda row: (row[1], row[2]))
 

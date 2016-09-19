@@ -8,7 +8,7 @@ def configure(engine):
     suite = python_suite()
     setup = engine.organize_experiment(suite, 'join-perf-time')
     setup.invoke_with_command(lambda program, size, version:
-                              '/usr/bin/time -v python%d -c "%s" >output' % (version, program % size))
+                              '/usr/bin/time -v python%d -c "%s" 2>output' % (version, program % size))
     setup.measure_parsing_file('secs', parse_cpu, "output")
     setup.measure_parsing_file('mem(KB)', parse_mem, "output")
     setup.set_report(report_values, 'time and mem(KB)', 'performance of join when using distinct types of objects')
